@@ -32,6 +32,20 @@
         <p class="fs-4 bg-dark text-white p-4">
           Le caching consiste à stocker en mémoire les resultats de requêtes ou de calculs afin de les réutiliser ultérieurement plutôt que de les recalculer à chaque fois . Dans  Symfony, vous pouvez utiliser le composant Cache pour mettre en cache des objects, des requêtes de base de données, des fragments de page ...etc
         </p>
+        <section>
+          Voici un exemple de code qui utilise le composant Cache de Symfony pour stocker en cache les résultats d'une requête de base de données pendant 10 minutes:
+        </section>
+        <pre>
+          use Symfony\Component\Cache\Adapter\FilessystemAdapter;
+          use Symfony\Componet\HttpFoundation\Response;
+
+          // ...
+
+          public function myAction()
+          {
+            // Créer un cache adapter avec le temps de vie des entrées de 10 minutes
+          }
+        </pre>
         
       </div>
     </div>
