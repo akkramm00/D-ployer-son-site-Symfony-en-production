@@ -73,6 +73,11 @@
             return new Response($resultAsString);
           }
         </pre>
+        <br><br>
+
+        <p>
+          Dans cet exemple , nous créons un cache "adapter(new FilesystemAdapter)" avec une durée de vie de 10 minutes, puis nous vérifions si les résultats sont déja en cache, en utilisant une clé unique pour cette requête de base de données. Si les résultats sont en cache, nous les retournons directement à l'utilisateur. Sinon, nous exécutons la requete de base de  données, convertissons les résultats en une chaine de caractères, stockons la chaine de caractères en cache et retournons-la à l'utilisateur.
+        </p>
         
       </div>
     </div>
