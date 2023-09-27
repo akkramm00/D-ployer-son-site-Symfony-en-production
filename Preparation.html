@@ -78,7 +78,25 @@
         <p>
           Dans cet exemple , nous créons un cache "adapter(new FilesystemAdapter)" avec une durée de vie de 10 minutes, puis nous vérifions si les résultats sont déja en cache, en utilisant une clé unique pour cette requête de base de données. Si les résultats sont en cache, nous les retournons directement à l'utilisateur. Sinon, nous exécutons la requete de base de  données, convertissons les résultats en une chaine de caractères, stockons la chaine de caractères en cache et retournons-la à l'utilisateur.
         </p>
+
+        <h3 class="text-danger fw-bold">Remarque</h3>
+        <p class="bg-dark text-white fs-4 p-4">
+          Notez qu'utiliser le composant cache pour optimiser les performances n'enlève pas le fait de vider la mémoire de cache avant la mise en production. Cela peut se faire avec la ligne de commande ci-dessous: <br><br>
+          <span class="bg-danger p-3"> $ php bin/console cache:clear</span>
+        </p>
         
+        <h3 class="text-danger fw-bold">Activer le mode Production</h3>
+        <p>
+          Pendant le développement de votre application , vous étiez zn mode développement ou "dev". Le mode production doit etre activé pour votre application Symfony avant le déploiment en production, afin de vous mettre avant le déploiment sur le serveur final. Pour activer le mode de production, vous devez définir la varaible d'environnement 'APP_ENV' sur prod.
+          <br><br>
+          Vous pouvez également supprimer tous les composants que vous avez installés qui ne sont utilisables qu'en mode "dev", comme le profiler par exemple. Vous retrouverez ces composants dans composer.json et dans 'require-dev'. Pour les supprimer tous en une seule fois avec la commande :
+
+          <pre class="text-white bg-success fs-5 p-2">
+            $ composer install -no-dev
+            ou
+            $ composer --no-dev update
+          </pre>
+        </p>
       </div>
     </div>
   </main>
