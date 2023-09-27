@@ -33,9 +33,10 @@
           Le caching consiste à stocker en mémoire les resultats de requêtes ou de calculs afin de les réutiliser ultérieurement plutôt que de les recalculer à chaque fois . Dans  Symfony, vous pouvez utiliser le composant Cache pour mettre en cache des objects, des requêtes de base de données, des fragments de page ...etc
         </p>
         <section>
-          Voici un exemple de code qui utilise le composant Cache de Symfony pour stocker en cache les résultats d'une requête de base de données pendant 10 minutes:
+          Voici un exemple de code qui utilise le composant Cache de Symfony pour stocker en cache les résultats d'une requête de base de données pendant 10 minutes :
         </section>
-        <pre>
+        <br><br>
+        <pre class="text-danger">
           use Symfony\Component\Cache\Adapter\FilessystemAdapter;
           use Symfony\Componet\HttpFoundation\Response;
 
@@ -44,6 +45,32 @@
           public function myAction()
           {
             // Créer un cache adapter avec le temps de vie des entrées de 10 minutes
+            $cache = new FilessystemAdapter('' , 600);
+
+            // Générer une clé unique pour cette requête de base de données
+            $cachesKey = 'my_database_qeru_cache_key';
+
+            // Vérifier si la valeur est déja en cache
+            $cachedResult = $cache->getItem($cacheKey);
+
+           if ($cachedResult -> isHit()) {
+              // Si la valeur est en cache, retourner la réponse avec le contenu mis en cache
+             return new Response($cachedResult->get());
+           }
+
+            // Si la valeur n'est en cache, effectuer la requête de base de données
+            $databaseResult = $this->getDoctrine() -> getRepository(MyEntity::class) ->findAll();
+
+            //Convertir le resumtat de la requête en une chaine de caractères
+            $resultAsString = serialize($databaseResult);
+
+            // Stocker la chaine de caractères en cache pendant 10 minutes
+            $cachedResult->set($resultAsString);
+            $cache->save($cachedResult);
+
+            // Retourner la réponse avec le contenu de la requête de base de données
+
+            return new Response($resultAsString);
           }
         </pre>
         
