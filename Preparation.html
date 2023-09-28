@@ -127,8 +127,15 @@
             Install your vendor dependencies (typicaly done via Composer and may be done before uploading) : <br>
             L'installationse fait gébéralement via Composer et peut etre faite avant ou après téléchargement sur le serveur de production.
           </li>
-          <li></li>
-          <li></li>
+          <li>
+            Running database migrations or similar tasks to update any changed data structures: <br>
+            Etape nécessaire si vous avez apporté des modifications à la structure de votre base de données. Vous pouvez utiliser la commande Symfony "php bin/console doctrine:migrations:migrate" pour exécuter les migrations.
+          </li>
+          <li>
+            Clearing (and optionally, warning up) your cache : <br>
+            Le cahce doit etre vidé pour s'assurer que votre application utilise les dérnières modifications apportées au code. Vous pouvez utiliser la commande Symfony "php bin/console cache:clear" pour vider le cache.
+            
+          </li>
           <li></li>
           <li></li>
         </ul>
